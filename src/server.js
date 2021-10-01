@@ -26,8 +26,12 @@ app.get('/', (req, res) => {
 app.get('/liquidity/:tokenA/:tokenB', async (req, res) => {
 
   try {
-    const tokenAAddress = req.params.tokenA;
-    const tokenBAddress = req.params.tokenB;
+    var tokenAAddress = req.params.tokenA;
+    var tokenBAddress = req.params.tokenB;
+
+    if (tokenAAddress > tokenBAddress) {
+      [tokenAAddress, tokenBAddress] = [tokenBAddress, tokenAAddress]
+    }
   
     const tokenAOptions = {
       address: tokenAAddress,
@@ -64,7 +68,7 @@ app.get('/liquidity/:tokenA/:tokenB', async (req, res) => {
     const tokenPairContract = await new web3.eth.Contract(JSON.parse(tokenPairABI), tokenPairAddress)
   
     const tokenPairLiquidity = await tokenPairContract.methods.getReserves().call();
-  
+
     const tokenAValue = tokenADetails.usdPrice * tokenPairLiquidity._reserve0 / 10 ** tokenADecimals 
     const tokenBValue = tokenBDetails.usdPrice * tokenPairLiquidity._reserve1 / 10 ** tokenBDecimals 
   
