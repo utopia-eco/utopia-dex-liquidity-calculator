@@ -10,8 +10,8 @@ const port = process.env.PORT
 
 const Moralis = require('moralis/node');
 
-Moralis.initialize("GE5JyXV3vDB89irEPsgb3DSdYbiw4XYRzeHgySm2");
-Moralis.serverURL = 'https://zbconyrwn1pv.moralishost.com:2053/server'
+Moralis.initialize("c2YpyMVhR0Kg1Oyjw0AuwFAnv3DcqmtDAmp8o3Wne4m9V2gUg47fjSjZLbgg8ZNs");
+Moralis.serverURL = 'https://v2lz31nmrv4a.usemoralis.com:2053/server'
 
 const pancakeSwapFactoryAddressV2 = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73";
 
