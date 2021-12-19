@@ -4,9 +4,11 @@ const express = require('express')
 const Web3 = require("web3")
 const web3 = new Web3("https://bsc-dataseed.binance.org/");
 const axios = require('axios')
+const Cache = require('timed-cache')
 const app = express()
 const cors = require('cors')
 const port = process.env.PORT
+var cache = new Cache({ defaultTtl: 150 * 1000 });
 
 const Moralis = require('moralis/node');
 
@@ -39,7 +41,13 @@ app.get('/liquidity/:tokenA/:tokenB', async (req, res) => {
       exchange: "PancakeSwapv2"
     };
   
-    const tokenADetails = await Moralis.Web3API.token.getTokenPrice(tokenAOptions);
+    let tokenADetails;
+    if (cache.get(tokenAAddress)) {
+      tokenADetails = cache.get(tokenAAddress)
+    } else {
+      tokenADetails = await Moralis.Web3API.token.getTokenPrice(tokenAOptions);
+      cache.put(tokenAAddress, tokenADetails)
+    }
   
     const tokenBOptions = {
       address: tokenBAddress,
@@ -47,7 +55,13 @@ app.get('/liquidity/:tokenA/:tokenB', async (req, res) => {
       exchange: "PancakeSwapv2"
     };
   
-    const tokenBDetails = await Moralis.Web3API.token.getTokenPrice(tokenBOptions);
+    let tokenBDetails;
+    if (cache.get(tokenBAddress)) {
+      tokenBDetails = cache.get(tokenBAddress)
+    } else {
+      tokenBDetails = await Moralis.Web3API.token.getTokenPrice(tokenBOptions);
+      cache.put(tokenBAddress, tokenBDetails)
+    }
   
     const tokenAABI = await getABI(tokenAAddress)
     const tokenAContract = await new web3.eth.Contract(JSON.parse(tokenAABI), tokenAAddress)
