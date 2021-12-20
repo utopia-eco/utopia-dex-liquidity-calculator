@@ -19,24 +19,16 @@ var cache = new Cache({ defaultTtl: 150 * 1000 });
 
 const Moralis = require('moralis/node');
 
-// <<<<<<< HEAD
 // const serverUrl = 'https://zbconyrwn1pv.moralishost.com:2053/server';
 // const appId = 'GE5JyXV3vDB89irEPsgb3DSdYbiw4XYRzeHgySm2';
 
-// const serverUrl = 'https://8byfolfnprmm.usemoralis.com:2053/server';
-// const appId = 'WK2Bg7yALwSkrIOqk7h5oA91ZXfvDcO3Mdfb1vOF';
+const serverUrl = 'https://8byfolfnprmm.usemoralis.com:2053/server';
+const appId = 'WK2Bg7yALwSkrIOqk7h5oA91ZXfvDcO3Mdfb1vOF';
 
-const serverUrl = 'https://v2lz31nmrv4a.usemoralis.com:2053/server';
-const appId = 'c2YpyMVhR0Kg1Oyjw0AuwFAnv3DcqmtDAmp8o3Wne4m9V2gUg47fjSjZLbgg8ZNs';
+// const serverUrl = 'https://v2lz31nmrv4a.usemoralis.com:2053/server';
+// const appId = 'c2YpyMVhR0Kg1Oyjw0AuwFAnv3DcqmtDAmp8o3Wne4m9V2gUg47fjSjZLbgg8ZNs';
 
 Moralis.start({serverUrl, appId});
-
-// Moralis.initialize("GE5JyXV3vDB89irEPsgb3DSdYbiw4XYRzeHgySm2");
-// Moralis.serverURL = 'https://zbconyrwn1pv.moralishost.com:2053/server'
-// =======
-// Moralis.initialize("c2YpyMVhR0Kg1Oyjw0AuwFAnv3DcqmtDAmp8o3Wne4m9V2gUg47fjSjZLbgg8ZNs");
-// Moralis.serverURL = 'https://v2lz31nmrv4a.usemoralis.com:2053/server'
-// >>>>>>> origin/master
 
 const pancakeSwapFactoryAddressV2 = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73";
 
